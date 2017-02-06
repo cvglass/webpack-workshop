@@ -1,6 +1,10 @@
-(function () {
+import EventEmitter from './event-emitter';
+//const EventEmitter = require('./event-emitter');
 
-  window.whiteboard = new window.EventEmitter();
+
+
+const whiteboard = new EventEmitter();
+
 
   // Ultimately, the color of our stroke;
   var color;
@@ -113,4 +117,5 @@
 
   };
 
-})();
+//module.exports = whiteboard;
+export default whiteboard;

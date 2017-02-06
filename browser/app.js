@@ -1,29 +1,29 @@
-(function () {
+//const whiteboard = require('./whiteboard');
+import whiteboard from './whiteboard';
+//const io = require('socket.io-client');
+import io from 'socket.io-client';
 
-  var whiteboard = window.whiteboard;
-  var socket = window.io(window.location.origin);
+const socket = io(window.location.origin);
 
-  socket.on('connect', function () {
-    console.log('Connected!');
-  });
+socket.on('connect', () => {
+  console.log('Connected!');
+});
 
-  socket.on('load', function (strokes) {
+socket.on('load', (strokes) => {
 
-    strokes.forEach(function (stroke) {
-      var start = stroke.start;
-      var end = stroke.end;
-      var color = stroke.color;
-      whiteboard.draw(start, end, color, false);
-    });
-
-  });
-
-  socket.on('draw', function (start, end, color) {
+  strokes.forEach( (stroke) => {
+    let start = stroke.start;
+    let end = stroke.end;
+    let color = stroke.color;
     whiteboard.draw(start, end, color, false);
   });
 
-  whiteboard.on('draw', function (start, end, color) {
-    socket.emit('draw', start, end, color);
-  });
+});
 
-})();
+socket.on('draw', (start, end, color) => {
+  whiteboard.draw(start, end, color, false);
+});
+
+whiteboard.on('draw', (start, end, color) => {
+  socket.emit('draw', start, end, color);
+});

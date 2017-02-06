@@ -5,10 +5,14 @@
   "main": "index.js",
   "author": "instructors@fullstackacademy.com",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "webpack"
   },
   "dependencies": {
     "express": "^4.12.3",
     "socket.io": "^1.7.2"
+  },
+  "devDependencies": {
+    "webpack": "^2.2.1"
   }
 }
